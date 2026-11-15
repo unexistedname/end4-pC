@@ -36,13 +36,17 @@ Singleton {
 
         const focusedName = Hyprland.focusedMonitor.name;
         const monitor = monitors.find(m => focusedName === m.screen.name);
-        if (monitor)
+        if (monitor && monitor.ready)
             monitor.setBrightness(monitor.brightness + 0.05);
     }
 
     function decreaseBrightness(): void {
         const focusedName = Hyprland.focusedMonitor.name;
         const monitor = monitors.find(m => focusedName === m.screen.name);
+        // Not ready means the level has not been read yet; acting on the
+        // default 0 would dim the screen to minimum.
+        if (monitor && !monitor.ready)
+            return;
         if (monitor && monitor.brightness > 0) 
             monitor.setBrightness(monitor.brightness - 0.05);
         // if brightness is 0, then decrease gamma
@@ -160,7 +164,7 @@ Singleton {
                 const rawValueRounded = Math.max(Math.floor(brightnessValue * monitor.rawMaxBrightness), 1);
                 setProc.exec(["ddcutil", "-b", busNum, "setvcp", "10", rawValueRounded]);
             } else {
-                const valuePercentNumber = Math.floor(brightnessValue * 100);
+                const valuePercentNumber = Math.round(brightnessValue * 100);
                 let valuePercent = `${valuePercentNumber}%`;
                 if (valuePercentNumber == 0) valuePercent = "1"; // Prevent fully black
                 setProc.exec(["brightnessctl", "--class", "backlight", "s", valuePercent, "--quiet"])

@@ -93,7 +93,10 @@ Singleton {
             root.disableTemperature();
             return;
         }
-        Quickshell.execDetached(["bash", "-c", `pidof hyprsunset || hyprsunset & disown; sleep 0.3; hyprctl hyprsunset identity`]);
+        // hyprsunset keeps filter state across shell reloads, so reset it to
+        // match this service's defaults (identity is a no-op on some versions).
+        Quickshell.execDetached(["bash", "-c", `pidof hyprsunset || hyprsunset & disown; sleep 0.3; hyprctl hyprsunset temperature 6500; hyprctl hyprsunset gamma 100`]);
+        root.gamma = 100;
         root.temperatureActive = false;
     }
 
@@ -111,7 +114,7 @@ Singleton {
         if (root.isNiri) {
             root.stopNiriSunset();
         } else {
-            Quickshell.execDetached(["hyprctl", "hyprsunset", "identity"]);
+            Quickshell.execDetached(["hyprctl", "hyprsunset", "temperature", "6500"]);
         }
         root.temperatureActive = false;
     }
