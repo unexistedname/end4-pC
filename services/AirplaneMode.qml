@@ -45,7 +45,8 @@ Singleton {
         if (changed) {
             Toast.show({
                 icon: next ? "airplanemode_active" : "airplanemode_inactive",
-                title: next ? Translation.tr("Airplane mode on") : Translation.tr("Airplane mode off")
+                title: Translation.tr("Airplane mode"),
+                body: next ? Translation.tr("On") : Translation.tr("Off"),
             });
         }
         root.initialized = true;
