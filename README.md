@@ -24,6 +24,12 @@ Customized and maintained by **pctrade**, customized again by me
 
 ---
 
+## Know Issues:
+
+- Backlight toast watch for changes all the time instead waiting for user input. May improves resource usage and notification delay
+
+---
+
 ## ⚡ Installation
 > [!NOTE]
 > This fork manages its own configuration folder independently — it does **not** overwrite or modify any existing setup. However, it does require [illogical-impulse](https://github.com/end-4/dots-hyprland) to be installed and running.
