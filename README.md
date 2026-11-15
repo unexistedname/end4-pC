@@ -4,67 +4,33 @@
 
 <div align="center">
 
-# 💠 end4-pC
+# 💠 Edited end4-pC
 
-**A personal fork of [illogical-impulse](https://github.com/end-4/dots-hyprland) by [@end-4](https://github.com/end-4)**  
-Customized and maintained by **pctrade**
-
-[English](README.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md)
-
-</div>
-
----
-
-## 🎬 Showcase
-
-<p align="center">
-  <a href="https://www.youtube.com/watch?v=o0Vsh7eVchs">
-    <img src="https://img.youtube.com/vi/o0Vsh7eVchs/maxresdefault.jpg" alt="Material 3 Expressive x Linux" width="85%" style="border-radius: 12px; box-shadow: 0px 10px 30px rgba(0,0,0,0.5);"/>
-  </a>
-</p>
+**An edit of personal fork of [illogical-impulse](https://github.com/end-4/dots-hyprland) by [@end-4](https://github.com/end-4)**. Mainly focused for laptop.
+Customized and maintained by **pctrade**, customized again by me
+> [!warning]
+> Vibecoded, use at your own risk
 
 </div>
 
 ---
 
-## 📸 Screenshots
-<div align="center">
+## Changes
 
-| 🎵 Lyrics | 🖼️ Online Wallpapers |
-|:---:|:---:|
-| ![Screenshot 1](screenshots/1.png) | ![Screenshot 2](screenshots/2.png) |
-| 🪟 Desktop Widgets | 🔧 Hyprland Configs |
-| ![Screenshot 5](screenshots/5.png) | ![Screenshot 6](screenshots/6.png) |
-| ⚙️ Configurable Bar | ✨ And More |
-| ![Screenshot 3](screenshots/3.png) | ![Screenshot 4](screenshots/4.png) |
+### Added notification toast for:
 
-</div>
-
----
-
-## 🎨 Community Presets
-
-Share your whole desktop with one button, or try someone else's in a click.
-
-**[end4-pCpresets](https://github.com/pctrade/end4-pCpresets)** is the community gallery for this shell. Open **Dashboard → Presets**, pick a preset and press **Download** to try it or **Install** to keep it. Made your own? Press **Upload**, choose a screenshot and it is sent for you with one click. The first time, a terminal opens to install the [GitHub CLI](https://cli.github.com) (`gh`) and sign you in, which takes a minute. If you skip that, the shell opens a GitHub page where you drag the folder in instead. Changed your mind? **Remove from gallery** takes your own preset back out.
-
-- 🔒 **Private by design:** nothing is collected from you. The shell only reads public files from GitHub.
-- 🧹 **Clean exports:** personal paths, keys and commands are removed before anything is shared.
-- ✅ **Every preset is checked** automatically. First-time authors are reviewed by hand, and trusted authors are merged automatically once the check passes.
-- 👤 **Yours stays yours:** only the person who shared a preset can change or remove it.
-
-[Browse the gallery](https://github.com/pctrade/end4-pCpresets) · [How to share yours](https://github.com/pctrade/end4-pCpresets#share-your-preset)
+- Airplane mode (also changes wifi and bluetooth in notification bar)
+- Keyboard backlight
 
 ---
 
 ## ⚡ Installation
-
 > [!NOTE]
 > This fork manages its own configuration folder independently — it does **not** overwrite or modify any existing setup. However, it does require [illogical-impulse](https://github.com/end-4/dots-hyprland) to be installed and running.
 
 ```bash
 cd ~/.config/quickshell/
-git clone https://github.com/pctrade/end4-pC.git
+git clone https://github.com/unexistedname/end4-pC.git
 killall qs 2>/dev/null; qs -c end4-pC > /dev/null 2>&1 & disown
 ```
 
