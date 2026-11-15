@@ -128,12 +128,19 @@ Item {
             onLoaded: item.color = root.iconColor
         }
         MaterialSymbol {
+            visible: AirplaneMode.enabled
+            text: "airplanemode_active"
+            iconSize: Appearance.font.pixelSize.larger
+            color: root.iconColor
+        }
+        MaterialSymbol {
+            visible: !AirplaneMode.enabled
             text: Network.materialSymbol
             iconSize: Appearance.font.pixelSize.larger
             color: root.iconColor
         }
         MaterialSymbol {
-            visible: BluetoothStatus.available
+            visible: !AirplaneMode.enabled && BluetoothStatus.available
             text: BluetoothStatus.connected ? "bluetooth_connected" : BluetoothStatus.enabled ? "bluetooth" : "bluetooth_disabled"
             iconSize: Appearance.font.pixelSize.larger
             color: root.iconColor
