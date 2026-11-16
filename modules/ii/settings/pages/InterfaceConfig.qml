@@ -220,6 +220,27 @@ ContentPage {
         }
 
         ContentSection {
+            icon: "power_settings_new"
+            shape: MaterialShape.Shape.Cookie6Sided
+            title: Translation.tr("Session Toggle")
+
+            GroupedList {
+                ConfigSelectionArray {
+                    text: Translation.tr("Position")
+                    icon: "position_bottom_left"
+                    currentValue: Config.options.appearance.session.position
+                    onSelected: newValue => { Config.options.appearance.session.position = newValue }
+                    options: [
+                        { displayName: Translation.tr("Top"), icon: "vertical_align_top", value: "top-center" },
+                        { displayName: Translation.tr("Bottom"), icon: "vertical_align_bottom", value: "bottom-center" },
+                        { displayName: Translation.tr("Right"), icon: "align_horizontal_right", value: "right-center" },
+                        { displayName: Translation.tr("Left"), icon: "align_horizontal_left", value: "left-center" }
+                    ]
+                }
+            }
+        }
+
+        ContentSection {
             icon: "splitscreen_left"
             shape: MaterialShape.Shape.Clover4Leaf
             title: Translation.tr("Left Sidebar")

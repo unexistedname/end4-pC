@@ -109,6 +109,9 @@ Singleton {
                 property string uiBackground: "themed"
                 property bool extraBackgroundTint: true
                 property int fakeScreenRounding: 2 // 0: None | 1: Always | 2: When not fullscreen
+                property JsonObject session: JsonObject {
+                    property string position: "bottom-center" // bottom-center | top-center | left-center | right-center
+                }
                 property JsonObject icons: JsonObject {
                     property string theme: "Tela"
                     property bool followScheme: true

@@ -3,56 +3,58 @@ import qs.modules.common.widgets
 import QtQuick
 import QtQuick.Layouts
 
-RippleButton {
+GroupButton {
     id: button
 
     property string buttonIcon
     property string buttonText
     property bool keyboardDown: false
-    property real size: 120
+    property real cellWidth: 96
+    property real cellHeight: 96
 
-    buttonRadius: (button.focus || button.down) ? size / 2 : Appearance.rounding.verylarge
-    colBackground: button.keyboardDown ? Appearance.colors.colSecondaryContainerActive : 
-        button.focus ? Appearance.colors.colPrimary : 
-        Appearance.colors.colSecondaryContainer
-    colBackgroundHover: Appearance.colors.colPrimary
-    colRipple: Appearance.colors.colPrimaryActive
-    property color colText: (button.down || button.keyboardDown || button.focus || button.hovered) ?
-        Appearance.m3colors.m3onPrimary : Appearance.colors.colOnLayer0
+    baseWidth: cellWidth
+    baseHeight: cellHeight
+    // Keep the cell fixed while the bounce animates implicitWidth.
+    Layout.preferredWidth: cellWidth
+    Layout.preferredHeight: cellHeight
+    padding: 0
+    bounce: true
+    buttonRadius: Appearance.rounding.normal
+    buttonRadiusPressed: Appearance.rounding.normal
 
-    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-    background.implicitHeight: size
-    background.implicitWidth: size
-
-    Behavior on buttonRadius {
-        animation: Appearance.animation.elementMoveFast.numberAnimation.createObject(this)
-    }
+    toggled: button.focus || button.keyboardDown
+    colBackground: Appearance.colors.colLayer1
+    colBackgroundHover: Appearance.colors.colLayer1Hover
+    colBackgroundActive: Appearance.colors.colLayer1Active
+    colBackgroundToggled: Appearance.colors.colPrimary
+    colBackgroundToggledHover: Appearance.colors.colPrimaryHover
+    colBackgroundToggledActive: Appearance.colors.colPrimaryActive
+    property color colText: button.toggled ? Appearance.m3colors.m3onPrimary : Appearance.colors.colOnLayer0
 
     Keys.onPressed: (event) => {
         if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
             keyboardDown = true
-            button.clicked()
-            event.accepted = true;
+            button.click()
+            event.accepted = true
         }
     }
     Keys.onReleased: (event) => {
         if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
             keyboardDown = false
-            event.accepted = true;
+            event.accepted = true
         }
     }
 
     contentItem: MaterialSymbol {
-        id: icon
-        anchors.fill: parent
-        color: button.colText
         horizontalAlignment: Text.AlignHCenter
-        iconSize: 45
-        text: buttonIcon
+        verticalAlignment: Text.AlignVCenter
+        fill: button.toggled ? 1 : 0
+        iconSize: Appearance.font.pixelSize.huge + 12
+        color: button.colText
+        text: button.buttonIcon
     }
 
     StyledToolTip {
-        text: buttonText
+        text: button.buttonText
     }
-
 }

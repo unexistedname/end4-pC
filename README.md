@@ -21,6 +21,13 @@ Customized and maintained by **pctrade**, customized again by me
 
 - Airplane mode (also changes wifi and bluetooth in notification bar)
 - Keyboard backlight
+- Refresh rate (`hypr/custom/scripts/refresh_rate.sh`, with a `notify-send` fallback when the shell isn't running)
+
+### Redesigned session screen:
+
+- Floating card that reuses the right sidebar's look (background, glass, border, shadow, bouncy buttons)
+- Slides in from the selected screen edge, icon-only buttons with tooltips, arrow-key navigation kept
+- New **Settings → Interface → Session Toggle → Position**: Top, Bottom, Right, Left (left/right reflow the buttons into a tall 2-column grid)
 
 ---
 
