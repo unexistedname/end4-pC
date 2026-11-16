@@ -3,6 +3,7 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import Quickshell
+import Quickshell.Io
 
 /**
  * Single-slot status toast. Any feature can call:
@@ -36,5 +37,17 @@ Singleton {
         id: hideTimer
         interval: root.duration
         onTriggered: root.visible = false
+    }
+
+    IpcHandler {
+        target: "toast"
+
+        function notify(icon: string, title: string, body: string): void {
+            root.show({
+                icon: icon,
+                title: title,
+                body: body
+            });
+        }
     }
 }
