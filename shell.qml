@@ -52,6 +52,7 @@ ShellRoot {
         Updates.load()
         KeyboardBacklight.load()
         Touchpad.load()
+        PowerProfileWatcher.load()
         LyricsService.restartLyrics()
     }
     

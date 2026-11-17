@@ -21,9 +21,11 @@ Customized and maintained by **pctrade**, customized again by me
 - Airplane mode (also changes wifi and bluetooth in notification bar)
 - Keyboard backlight
 - Refresh rate (script not included)
-- Audio mute/unmute (also from Fn+F1 and the volume mixer)
-- Microphone mute/unmute (also from Fn+F4)
-- Touchpad enable/disable (Fn+F10, via `hypr/custom/keybinds.lua` → `qs ipc call touchpad toggle`)
+- Audio mute/unmute
+- Microphone mute/unmute 
+- Touchpad enable/disable
+- Charger plugged in/unplugged
+- Power profile (quiet/balanced/performance)
 
 ### Redesigned session screen:
 

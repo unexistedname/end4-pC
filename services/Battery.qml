@@ -13,6 +13,9 @@ Singleton {
     property var chargeState: UPower.displayDevice.state
     property bool isCharging: chargeState == UPowerDeviceState.Charging
     property bool isPluggedIn: isCharging || chargeState == UPowerDeviceState.PendingCharge
+    // Tracks the AC line, unlike isPluggedIn which drops to false when the
+    // battery reaches FullyCharged while still plugged in.
+    readonly property bool runningOnBattery: UPower.onBattery
     property real percentage: UPower.displayDevice?.percentage ?? 1
     readonly property bool allowAutomaticSuspend: Config.options.battery.automaticSuspend
     readonly property bool soundEnabled: Config.options.sounds.battery
@@ -107,12 +110,14 @@ Singleton {
         if (root.soundEnabled) Audio.playSystemSound("complete");
     }
 
-    onIsPluggedInChanged: {
-        if (!root.available || !root.soundEnabled) return;
-        if (isPluggedIn) {
-            Audio.playSystemSound("power-plug")
-        } else {
-            Audio.playSystemSound("power-unplug")
-        }
+    onRunningOnBatteryChanged: {
+        if (!root.available) return;
+        if (root.soundEnabled)
+            Audio.playSystemSound(root.runningOnBattery ? "power-unplug" : "power-plug");
+        Toast.show({
+            icon: root.runningOnBattery ? "power_off" : "power",
+            title: Translation.tr("Charger"),
+            body: root.runningOnBattery ? Translation.tr("Unplugged") : Translation.tr("Plugged in"),
+        });
     }
 }
