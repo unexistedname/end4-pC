@@ -51,6 +51,7 @@ ShellRoot {
         Football.load()
         Updates.load()
         KeyboardBacklight.load()
+        Touchpad.load()
         LyricsService.restartLyrics()
     }
     

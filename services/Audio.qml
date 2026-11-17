@@ -118,6 +118,30 @@ Singleton {
         }
     }
 
+    // Mute toasts watch the Pipewire objects, not the sink/source properties,
+    // so switching the default device stays silent: rebinding emits no signal.
+    function notifyMuteToast(muted, onIcon, offIcon, title) {
+        Toast.show({
+            icon: muted ? offIcon : onIcon,
+            title: Translation.tr(title),
+            body: muted ? Translation.tr("Muted") : Translation.tr("Unmuted"),
+        });
+    }
+
+    Connections {
+        target: sink?.audio ?? null
+        function onMutedChanged() {
+            root.notifyMuteToast(sink.audio.muted, "volume_up", "volume_off", "Audio");
+        }
+    }
+
+    Connections {
+        target: source?.audio ?? null
+        function onMutedChanged() {
+            root.notifyMuteToast(source.audio.muted, "mic", "mic_off", "Microphone");
+        }
+    }
+
     function playSystemSound(soundName) {
         const ogaPath = `/usr/share/sounds/${root.audioTheme}/stereo/${soundName}.oga`;
         const oggPath = `/usr/share/sounds/${root.audioTheme}/stereo/${soundName}.ogg`;
